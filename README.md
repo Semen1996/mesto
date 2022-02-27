@@ -1,4 +1,4 @@
-# Проект: Место https://semen1996.github.io/mesto/index.html
+# Проект: Место https://semen1996.github.io/mesto/
 
 ### Обзор
 
