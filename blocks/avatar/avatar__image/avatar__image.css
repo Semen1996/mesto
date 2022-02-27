@@ -1,4 +1,5 @@
 .avatar__image {
   background-image: url(../../../images/Kusto.jpg);
   background-size: cover;
+  z-index: 2;
 }
