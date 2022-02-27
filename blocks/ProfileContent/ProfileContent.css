@@ -1,0 +1,11 @@
+.ProfileContent {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .ProfileContent {
+    flex-direction: column;
+  }
+}

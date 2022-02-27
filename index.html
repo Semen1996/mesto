@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pages/index.css">
+    <title>mesto</title>
+</head>
+<body class="root">
+  <header class="header">
+    <div class="logo"></div>
+  </header>
+  <main class="content">
+    <section class="profile">
+      <div class="ProfileContent">
+        <div class="avatar avatar__image"></div>
+        <div class="ProfileInfo">
+          <h1 class="ProfileInfo__Name">Жак-Ив Кусто</h1>
+          <div class="ProfileInfo__EditButton"></div>
+          <p class="ProfileInfo__Description">Исследователь океана</p>
+        </div>
+      </div> 
+      <div class="AddButton"></div>   
+    </section>
+    <section class="Elements">
+      <div class="Element">
+        <img class="Element__picture" src="images/Karachaevsk.jpg" alt="">
+        <div class="Element__menu">
+          <p class="Element__title">Карачаевск</p>  
+          <div class="Element__like"></div>
+        </div>
+      </div>
+      <div class="Element">
+        <img class="Element__picture" src="images/Elbrus.png" alt="">
+        <div class="Element__menu">
+          <p class="Element__title">Гора Эльбрус</p>  
+          <div class="Element__like"></div>
+        </div>  
+      </div>
+      <div class="Element">
+        <img class="Element__picture" src="images/Dombay.jpg" alt="">
+        <div class="Element__menu">
+          <p class="Element__title">Домбай</p>  
+          <div class="Element__like"></div>
+        </div>
+      </div>
+      <div class="Element">
+        <img class="Element__picture" src="images/Elbrus.png" alt="">
+        <div class="Element__menu">
+          <p class="Element__title">Гора Эльбрус</p>  
+          <div class="Element__like"></div>
+        </div>  
+      </div>
+      <div class="Element">
+        <img class="Element__picture" src="images/Dombay.jpg" alt="">
+        <div class="Element__menu">
+          <p class="Element__title">Домбай</p>  
+          <div class="Element__like"></div>
+        </div>
+      </div>
+      <div class="Element">
+        <img class="Element__picture" src="images/Karachaevsk.jpg" alt="">
+        <div class="Element__menu">
+          <p class="Element__title">Карачаево-Черкесия</p>  
+          <div class="Element__like"></div>
+        </div>  
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+  </footer>
+  <div class="popup">
+    <div class="popup__overlay"></div>
+    <form class="popup__container">
+      <h2 class="popup__title">Редактировать профиль</h2>
+        <input class="popup__Field popup__Field_type_Name"  type="text" value="">
+        <input class="popup__Field popup__Field_type_Description" type="text" value="">
+        <button class="popup__SubmitButton" type="submit">Сохранить</button>
+      <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
+    </form>
+  </div>
+  <script src="script.js"></script>  
+</body>
+</html>

@@ -1,0 +1,19 @@
+.Element {
+  max-width: 282px;
+  min-height: 361px;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+  .Element:nth-child(-n+2) {
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Element:nth-child(2) {
+    margin-top: 20px;
+  }
+}
