@@ -8,75 +8,74 @@
 </head>
 <body class="root">
   <header class="header">
-    <div class="logo"></div>
+    <div class="header__logo logo"></div>
   </header>
   <main class="content">
     <section class="profile">
-      <div class="ProfileContent">
-        <div class="ProfileContent__avatar"></div>
-        <div class="ProfileInfo">
-          <h1 class="ProfileInfo__Name">Жак-Ив Кусто</h1>
-          <div class="ProfileInfo__EditButton"></div>
-          <p class="ProfileInfo__Description">Исследователь океана</p>
+      <div class="profile__content">
+        <div class="profile__avatar"></div>
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__editButton" type="button" aria-label="Редактировать профиль"></button>
+          <p class="profile__description">Исследователь океана</p>
         </div>
       </div> 
-      <div class="AddButton"></div>   
+      <button class="profile__addButton" type="button" aria-label="Добавить"></button>
     </section>
-    <section class="Elements">
-      <div class="Element">
-        <img class="Element__picture" src="images/Karachaevsk.jpg" alt="">
-        <div class="Element__menu">
-          <p class="Element__title">Карачаевск</p>  
-          <div class="Element__like"></div>
+    <section class="elements">
+      <article class="element">
+        <img class="element__picture" src="images/Karachaevsk.jpg" alt="Церковь в горах Карачаевска">
+        <div class="element__menu">
+          <h2 class="element__title">Карачаевск</h2>
+          <button class="element__like" type="button" aria-label="Лайк"></button>  
         </div>
-      </div>
-      <div class="Element">
-        <img class="Element__picture" src="images/Elbrus.png" alt="">
-        <div class="Element__menu">
-          <p class="Element__title">Гора Эльбрус</p>  
-          <div class="Element__like"></div>
+      </article>
+      <article class="element">
+        <img class="element__picture" src="images/Elbrus.png" alt="Вид на Эльбрус">
+        <div class="element__menu">
+          <h2 class="element__title">Гора Эльбрус</h2>  
+          <button class="element__like" type="button" aria-label="Лайк"></button>
         </div>  
-      </div>
-      <div class="Element">
-        <img class="Element__picture" src="images/Dombay.jpg" alt="">
-        <div class="Element__menu">
-          <p class="Element__title">Домбай</p>  
-          <div class="Element__like"></div>
+      </article>
+      <article class="element">
+        <img class="element__picture" src="images/Dombay.jpg" alt="Горы Домбая">
+        <div class="element__menu">
+          <h2 class="element__title">Домбай</h2>  
+          <button class="element__like" type="button" aria-label="Лайк"></button>
         </div>
-      </div>
-      <div class="Element">
-        <img class="Element__picture" src="images/Elbrus.png" alt="">
-        <div class="Element__menu">
-          <p class="Element__title">Гора Эльбрус</p>  
-          <div class="Element__like"></div>
+      </article>
+      <article class="element">
+        <img class="element__picture" src="images/Elbrus.png" alt="Вид на Эльбрус">
+        <div class="element__menu">
+          <h2 class="element__title">Гора Эльбрус</h2>  
+          <button class="element__like" type="button" aria-label="Лайк"></button>
         </div>  
-      </div>
-      <div class="Element">
-        <img class="Element__picture" src="images/Dombay.jpg" alt="">
-        <div class="Element__menu">
-          <p class="Element__title">Домбай</p>  
-          <div class="Element__like"></div>
+      </article>
+      <article class="element">
+        <img class="element__picture" src="images/Dombay.jpg" alt="Горы Домбая">
+        <div class="element__menu">
+          <h2 class="element__title">Домбай</h2>  
+          <button class="element__like" type="button" aria-label="Лайк"></button>
         </div>
-      </div>
-      <div class="Element">
-        <img class="Element__picture" src="images/Karachaevsk.jpg" alt="">
-        <div class="Element__menu">
-          <p class="Element__title">Карачаево-Черкесия</p>  
-          <div class="Element__like"></div>
+      </article>
+      <article class="element">
+        <img class="element__picture" src="images/Karachaevsk.jpg" alt="Церковь в горах Карачаевска">
+        <div class="element__menu">
+          <h2 class="element__title">Карачаево-Черкесия</h2>  
+          <button class="element__like" type="button" aria-label="Лайк"></button>
         </div>  
-      </div>
+      </article>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
   <div class="popup">
-    <div class="popup__overlay"></div>
-    <form class="popup__container">
+    <form class="popup__container" name="profile-form">
       <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__Field popup__Field_type_Name"  type="text" value="">
-        <input class="popup__Field popup__Field_type_Description" type="text" value="">
-        <button class="popup__SubmitButton" type="submit">Сохранить</button>
+        <input class="popup__field popup__field_type_name"  type="text" value="" placeholder="Введите имя">
+        <input class="popup__field popup__field_type_description" type="text" value="" placeholder="Укажите кем работаете">
+        <button class="popup__submitButton" type="submit">Сохранить</button>
       <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
     </form>
   </div>
