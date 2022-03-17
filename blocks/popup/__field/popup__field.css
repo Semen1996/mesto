@@ -11,6 +11,10 @@
   line-height: 17px;
 }
 
+.popup__field:hover {
+  cursor: pointer;
+}
+
 .popup__field:nth-child(2n) {
   margin-bottom: 21px;
 }
