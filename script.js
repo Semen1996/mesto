@@ -30,17 +30,19 @@ function closePopup(popup) {
 
 // Вставляем новую карточку 
 function insertCard(link,title) {
-  const userElement = elementTemplate.querySelector('.element').cloneNode(true);
-  const elementPicture = userElement.querySelector('.element__picture');
 
-  addCard(link,title,userElement,elementPicture);
+
+  const card = addCard(link,title);
 
   // отображаем на странице
-  userElements.prepend(userElement); 
+  userElements.prepend(card); 
 }
 
 // Функция для добавления карточки 
-function addCard(link,title,userElement,elementPicture) {
+function addCard(link,title) {
+
+  const userElement = elementTemplate.querySelector('.element').cloneNode(true);
+  const elementPicture = userElement.querySelector('.element__picture');
 
   // наполняем содержимым
   elementPicture.src = link;
@@ -64,6 +66,8 @@ function addCard(link,title,userElement,elementPicture) {
     popupPicture.alt = title;
     document.querySelector('.popup__figcaption').textContent = title;
   });
+
+  return userElement;
 }
 
 // Открытие попапа изменение профиля
