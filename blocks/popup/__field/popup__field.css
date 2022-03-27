@@ -15,10 +15,6 @@
   cursor: pointer;
 }
 
-.popup__field:nth-child(2n) {
-  margin-bottom: 21px;
-}
-
 @media screen and (max-width: 768px) {
   .popup__field {
     width: 238px;
