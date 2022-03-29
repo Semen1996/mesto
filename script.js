@@ -1,7 +1,14 @@
-const nameInput = document.querySelector('.popup__field_type_name');
-const jobInput = document.querySelector('.popup__field_type_description');
+const popupEdit = document.querySelector('.popup_edit');
+const editButton = document.querySelector('.profile__editButton');
+const formElementEdit = document.querySelector('.popup__container_edit');
+const nameInput = formElementEdit.querySelector('.popup__field_type_name');
+const jobInput = formElementEdit.querySelector('.popup__field_type_description');
 const popupName = document.querySelector('.profile__name');
 const popupJob = document.querySelector('.profile__description');
+
+const popupAdd = document.querySelector('.popup_add');
+const addButton = document.querySelector('.profile__addButton');
+
 const userElements = document.querySelector('.elements');
 const formElementAdd = document.querySelector('.popup__container_add');
 const titleInput = formElementAdd.querySelector('.popup__field_type_title');
@@ -9,7 +16,6 @@ const linkInput = formElementAdd.querySelector('.popup__field_type_link');
 const popupImage = document.querySelector('.popup_image');
 const popupPicture = document.querySelector('.popup__picture');
 const elementTemplate = document.querySelector('#element').content;
-const MAIN = document.querySelector('.root');
 const closeImage = document.querySelector('.popup__close_image');
 
 // Открытие попапа
@@ -60,169 +66,14 @@ function addCard(link,title) {
     popupPicture.src = link;
     popupPicture.alt = title;
     document.querySelector('.popup__figcaption').textContent = title;
+
+    popupImage.addEventListener('click',closeButtonOverlay);
+    document.addEventListener('keydown',closeButtonEsc);
   });
 
   return userElement;
 }
 
-// При нажатии на submit
-function submitPopup(evt) {
-  closePopup(evt.target.parentElement);
-  
-  if (evt.target.classList.contains('popup__container_edit')) {
-
-  popupName.textContent = nameInput.value;
-  popupJob.textContent = jobInput.value;      
-
-  } else if(evt.target.classList.contains('popup__container_add')) {
-
-    insertCard(linkInput.value,titleInput.value);
-    linkInput.value='';
-    titleInput.value='';
-
-  }
-}
-
-// Закрытие Попапа всеми возможными методами
-function closeButtonsPopup(closeButton,popup) {
-
-  closeButton.addEventListener('click', function() {
-    closePopup(popup);
-  });
-
-  MAIN.addEventListener('keydown',function(evt) {
-    if (evt.key==='Escape') {
-      closePopup(popup);
-   }
-  });
-
-  popup.addEventListener('click',function(evt) {
-    if (evt.target.classList.contains('popup')) {
-      closePopup(popup);
-    }
-    
-  });
-
-}
-
-
-// Показываем ошибку
-function showInputError(formElement, inputElement,errorMesage) {
-
-  //Находим элемент с ошибкой
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-  inputElement.classList.add('popup__field_error');
-  errorElement.textContent = errorMesage;
-  errorElement.classList.add('popup__input-error_active');
-}
-
-// Прячем ошибку
-function hideInputError(formElement, inputElement) {
-
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-
-  inputElement.classList.remove('popup__field_error');
-  errorElement.classList.remove('popup__input-error_active');
-  errorElement.textContent = '';
-}
-
-// Проверяем: есть ли ошибка?
-function isValid(formElement, inputElement) {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else {
-    hideInputError(formElement, inputElement);
-  }
-}
-
-// Проверяем: валидна ли форма?
-function hasInvalidInput (inputList)  {
-
-  return inputList.some((inputElement) => {
-    
-    return !inputElement.validity.valid;
-
-  })
-}
-
-
-// Придаем кнопке сохранить рабочее или не рабочее состояние (Если хотя бы один инпут не валиден, то кнопка не работает)
-function toggleButtonState(formElement,inputList, buttonElement) {
-  
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__submitButton_inactive');
-    formElement.removeEventListener('submit', submitPopup);
-  } else {
-    buttonElement.classList.remove('popup__submitButton_inactive');
-    formElement.addEventListener('submit', submitPopup);
-  }
-
-}
-
-//Навешиваем форме слушателей форме
-function setEventListeners(formElement) {
-  
-  const inputList = Array.from(formElement.querySelectorAll('.popup__field'));
-  const buttonElement = formElement.querySelector('.popup__submitButton');
-  const closeButton = formElement.querySelector('.popup__close');
-  const popup = formElement.parentElement;
-  const openPopupButton = document.querySelector(`.profile__${popup.id}`);
-  
-  // У каждой формы отменим стандартное поведение
-  formElement.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-  });
-
-  // Открытие попапа
-  openPopupButton.addEventListener('click', function() {
-    
-    openPopup(popup);
-    
-    if (popup.classList.contains('popup_edit')) {
-    nameInput.value = popupName.textContent;
-    jobInput.value = popupJob.textContent;
-    }
-
-    toggleButtonState(formElement,inputList, buttonElement);
-
-      //Переберём полученную коллекцию
-    inputList.forEach(function(inputElement) {
-
-      isValid(formElement, inputElement);
-      // каждому полю добавим обработчик события input
-      inputElement.addEventListener('input', function() {
-      
-      // Проверка на валидность
-      isValid(formElement, inputElement);
-
-      // Вызовем toggleButtonState и передадим ей массив полей и кнопку
-      toggleButtonState(formElement,inputList, buttonElement);
-
-    });
-  });
-
-    closeButtonsPopup(closeButton,popup);
-
-  }); 
-
-}
-
-// Включаем валидацию форм
-function enableValidation() {
-
-  // Создаем массив, состоящий из форм
-  const formList = Array.from(document.querySelectorAll('.popup__container'));
-  
-  //Переберём полученную коллекцию
-  formList.forEach(function(formElement) {
-
-    // Для каждой формы вызовем функцию setEventListener
-    setEventListeners(formElement);
-
-  });
-}
 
 
 // добавляем начальные карточки
@@ -230,8 +81,112 @@ for (let i = 0; i < initialCards.length; i++) {
   insertCard(initialCards[i].link,initialCards[i].name);
 };
 
-// Подключаем валидацию форм
-enableValidation();
 
-// Закрываем попап с изображением
-closeButtonsPopup(closeImage,popupImage);
+
+
+// 6 спринт
+
+// Закрытие попапа с помощью кнопки Esc
+function closeButtonEsc(evt) {
+
+  if (evt.key==='Escape') {
+  closePopup( document.querySelector('.popup_opened') );
+  document.removeEventListener('keydown',closeButtonEsc);
+ }
+
+}
+
+// Закрытие попапа с помощью нажатие на оверлей
+function closeButtonOverlay(evt) {
+  if (evt.target.classList.contains('popup')) {
+    closePopup(evt.target);
+    evt.target.removeEventListener('click',closeButtonOverlay);
+  }
+}
+
+
+
+nameInput.value = popupName.textContent;
+jobInput.value = popupJob.textContent;
+// Открытие попапа изменение профиля
+editButton.addEventListener('click', function() {
+  openPopup(popupEdit);
+  nameInput.value = popupName.textContent;
+  jobInput.value = popupJob.textContent;
+
+  popupEdit.addEventListener('click',closeButtonOverlay);
+  document.addEventListener('keydown',closeButtonEsc);
+
+}); 
+
+
+//  Открытие попапа добавления элемента
+addButton.addEventListener('click', function(){
+  openPopup(popupAdd);
+
+  popupAdd.addEventListener('click',closeButtonOverlay);
+  document.addEventListener('keydown',closeButtonEsc);
+}); 
+
+
+
+const popups = document.querySelectorAll('.popup');
+
+
+
+function submitPopupEdit(evt) {
+  evt.preventDefault();      
+
+  if (!evt.submitter.classList.contains('popup__submitButton_inactive')) {
+    
+    closePopup(popupEdit);
+    popupName.textContent = nameInput.value;
+    popupJob.textContent = jobInput.value;
+  }
+
+}
+
+function submitPopupAdd(evt) {
+  evt.preventDefault(); 
+
+  if (!evt.submitter.classList.contains('popup__submitButton_inactive')) {
+  closePopup(popupAdd);
+  insertCard(linkInput.value,titleInput.value);
+
+  linkInput.value='';
+  titleInput.value='';
+  }
+
+}
+
+// Редактирование попапа изменение профиля
+formElementEdit.addEventListener('submit', submitPopupEdit);
+
+// Прикрепляем обработчик к форме
+formElementAdd.addEventListener('submit', submitPopupAdd);
+
+
+
+// Навешиваем попапам слушателей
+popups.forEach(function(popup) {
+
+  const closeButton = popup.querySelector('.popup__close');
+
+  // Закрытие попапа крестиком
+  closeButton.addEventListener('click', function() {
+    closePopup(popup);
+  });
+
+});
+
+
+
+// Подключаем валидацию форм
+enableValidation({
+  formSelector: '.popup__container',
+  inputSelector: '.popup__field',
+  submitButtonSelector: '.popup__submitButton',
+  inactiveButtonClass: 'popup__submitButton_inactive',
+  inputErrorClass: 'popup__input-error_active',
+  errorClass: 'popup__field_error'
+}); 
