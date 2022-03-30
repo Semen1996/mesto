@@ -3,11 +3,14 @@ const editButton = document.querySelector('.profile__editButton');
 const formElementEdit = document.querySelector('.popup__container_edit');
 const nameInput = formElementEdit.querySelector('.popup__field_type_name');
 const jobInput = formElementEdit.querySelector('.popup__field_type_description');
+const submitButtonEdit = formElementEdit.querySelector('.popup__submitButton');
+const inputsPopupEdit = formElementEdit.querySelectorAll('.popup__input');
 const popupName = document.querySelector('.profile__name');
 const popupJob = document.querySelector('.profile__description');
 
 const popupAdd = document.querySelector('.popup_add');
 const addButton = document.querySelector('.profile__addButton');
+const submitButtonAdd = popupAdd.querySelector('.popup__submitButton');
 
 const userElements = document.querySelector('.elements');
 const formElementAdd = document.querySelector('.popup__container_add');
@@ -84,9 +87,6 @@ for (let i = 0; i < initialCards.length; i++) {
 
 
 
-
-// 6 спринт
-
 // Закрытие попапа с помощью кнопки Esc
 function closeButtonEsc(evt) {
   if (evt.key==='Escape') {
@@ -102,16 +102,25 @@ function closeButtonOverlay(evt) {
 }
 
 
-
-nameInput.value = popupName.textContent;
-jobInput.value = popupJob.textContent;
-
-
 // Открытие попапа изменение профиля
 editButton.addEventListener('click', function() {
   openPopup(popupEdit);
   nameInput.value = popupName.textContent;
   jobInput.value = popupJob.textContent;
+
+  submitButtonEdit.classList.remove('popup__submitButton_inactive');
+  submitButtonEdit.removeAttribute('disabled');
+
+
+  inputsPopupEdit.forEach(function(inputElement) {
+
+    const errorSpan = inputElement.querySelector(`.popup__input-error`);
+    const errorInput = inputElement.querySelector(`.popup__field`);
+  
+    errorInput.classList.remove('popup__field_error');
+    errorInput.classList.remove('popup__input-error_active');
+    errorSpan.textContent = '';
+ });
 }); 
 
 
@@ -143,6 +152,9 @@ function submitPopupAdd(evt) {
 
   linkInput.value='';
   titleInput.value='';
+
+  submitButtonAdd.classList.add('popup__submitButton_inactive');
+  submitButtonAdd.setAttribute('disabled', true);
 }
 
 // Редактирование попапа изменение профиля

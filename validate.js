@@ -69,28 +69,6 @@ function setEventListeners(formElement,formObj) {
 
 
   toggleButtonState(inputList, buttonElement,inactiveButtonClass);
-  
-
-  if (formElement.classList.contains('popup__container_edit')) {
-    // Открытие попапа изменение профиля
-    editButton.addEventListener('click', function() {
-  
-      toggleButtonState(inputList, buttonElement,inactiveButtonClass);
-       // Проверка на валидность
-       isValid(formElement, inputList[0], errorClass, inputErrorClass);
-       isValid(formElement, inputList[1], errorClass, inputErrorClass);
-    }); 
-  }
-
-
-  formElement.addEventListener('submit', function(evt) { 
-    evt.preventDefault(); 
-    
-  // Вызовем toggleButtonState и передадим ей массив полей и кнопку
-    toggleButtonState(inputList, buttonElement,inactiveButtonClass);
-  });
-
-  formElement.parentElement
 
 
   //Переберём полученную коллекцию
@@ -120,7 +98,7 @@ function enableValidation(formObj) {
 
 
 
-  const {formSelector,inputSelector} = formObj;
+  const {formSelector} = formObj;
 
 
   // Создаем массив, состоящий из форм
