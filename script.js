@@ -1,3 +1,6 @@
+import Card from './Card.js';
+import FormValidation from './FormValidator.js';
+
 const popupEdit = document.querySelector('.popup_edit');
 const editButton = document.querySelector('.profile__editButton');
 const formElementEdit = document.querySelector('.popup__container_edit');
@@ -16,10 +19,54 @@ const userElements = document.querySelector('.elements');
 const formElementAdd = document.querySelector('.popup__container_add');
 const titleInput = formElementAdd.querySelector('.popup__field_type_title');
 const linkInput = formElementAdd.querySelector('.popup__field_type_link');
+const closeImage = document.querySelector('.popup__close_image');
+
 const popupImage = document.querySelector('.popup_image');
 const popupPicture = document.querySelector('.popup__picture');
-const elementTemplate = document.querySelector('#element').content;
-const closeImage = document.querySelector('.popup__close_image');
+
+const templateSelector = '#element';
+
+// Массив классов и селекторов
+const formObj = {
+  formSelector: '.popup__container',
+  inputSelector: '.popup__field',
+  submitButtonSelector: '.popup__submitButton',
+  inactiveButtonClass: 'popup__submitButton_inactive',
+  inputErrorClass: 'popup__input-error_active',
+  errorClass: 'popup__field_error'
+};
+
+// Подключаем валидацию форм
+const validationPopupAdd = new FormValidation(formObj, formElementAdd);
+const validationPopupEdit = new FormValidation(formObj, formElementEdit);
+
+validationPopupAdd.enableValidation();
+validationPopupEdit.enableValidation();
+
+
+
+// Вставляем новую карточку 
+function insertCard(link,title) {
+  const card = new Card(link, title, templateSelector);
+  const cardElement = card.generateCard();
+
+  // Добавляем в DOM
+  userElements.prepend(cardElement); 
+}
+
+
+// добавляем начальные карточки
+initialCards.forEach( (item) => {
+  insertCard(item.link,item.name);
+});
+
+
+
+
+
+
+
+
 
 // Открытие попапа
 function openPopup(popup) {
@@ -34,58 +81,6 @@ function closePopup(popup) {
   popup.removeEventListener('click',closeButtonOverlay);
   document.removeEventListener('keydown',closeButtonEsc);
 }
-
-
-// Вставляем новую карточку 
-function insertCard(link,title) {
-
-  const card = addCard(link,title);
-
-  // отображаем на странице
-  userElements.prepend(card); 
-}
-
-
-// Функция для добавления карточки 
-function addCard(link,title) {
-
-  const userElement = elementTemplate.querySelector('.element').cloneNode(true);
-  const elementPicture = userElement.querySelector('.element__picture');
-
-  // наполняем содержимым
-  elementPicture.src = link;
-  elementPicture.alt = title;
-  userElement.querySelector('.element__title').textContent = title;
-
-  // Ставим лукасы
-  userElement.querySelector('.element__like').addEventListener('click', function(evt){
-    evt.target.classList.toggle('element__like_active');
-  }); 
-
-  // удаляем элемент
-  userElement.querySelector('.element__dump').addEventListener('click', function(evt){
-    evt.target.closest('.element').remove();
-  });
-
-  // Открываем попап с картинкой
-  elementPicture.addEventListener('click', function(evt){
-    openPopup(popupImage);
-    popupPicture.src = link;
-    popupPicture.alt = title;
-    document.querySelector('.popup__figcaption').textContent = title;
-  });
-
-  return userElement;
-}
-
-
-
-// добавляем начальные карточки
-for (let i = 0; i < initialCards.length; i++) {
-  insertCard(initialCards[i].link,initialCards[i].name);
-};
-
-
 
 // Закрытие попапа с помощью кнопки Esc
 function closeButtonEsc(evt) {
@@ -177,5 +172,4 @@ popups.forEach(function(popup) {
 
 });
 
-
-
+export { openPopup };
