@@ -1,11 +1,10 @@
-import { openPopup } from './script.js';
-
 export default class Card {
 
-    constructor(link, title, cardSelector) {
+    constructor(link, title, cardSelector,handleCardClick) {
       this._link = link;
       this._title = title;
       this._cardSelector = cardSelector;
+      this._handleCardClick = handleCardClick;
     }
   
     _getTemplate() {
@@ -28,28 +27,37 @@ export default class Card {
     
       return this._element;
     }
-  
-    //Навешиваем слушателей
-    _setEventListeners() {
-  
-      // Ставим лукасы
+
+    // Ставим лукасы
+    _toggleLike() {
       this._element.querySelector('.element__like').addEventListener('click',function(evt){
         evt.target.classList.toggle('element__like_active');
-      }); 
+      });
+    }
   
-      // удаляем элемент
+    // удаляем элемент
+    _deleteCard() {
       this._element.querySelector('.element__dump').addEventListener('click', function(evt){
         evt.target.closest('.element').remove();
       });
-  
-      // Открываем попап
+    }
+
+    // Открываем попап
+    _handleImageClick() {
       this._elementPicture.addEventListener('click', () => {
-        const popupImage = document.querySelector('.popup_image');
-        const popupPicture = document.querySelector('.popup__picture');
-        openPopup(popupImage);
-        popupPicture.src = this._link;
-        popupPicture.alt = this._title;
-        document.querySelector('.popup__figcaption').textContent = this._title;
+        
+        this._handleCardClick(this._title, this._link);
+
       });
+    }
+
+    //Навешиваем слушателей
+    _setEventListeners() {
+      
+      this._toggleLike();
+  
+      this._deleteCard();
+      
+      this._handleImageClick();
     }
   }
