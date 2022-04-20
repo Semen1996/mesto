@@ -29,35 +29,27 @@ export default class Card {
     }
 
     // Ставим лукасы
-    _toggleLike() {
-      this._element.querySelector('.element__like').addEventListener('click',function(evt){
-        evt.target.classList.toggle('element__like_active');
-      });
+    _toggleLike(evt) {
+      evt.target.classList.toggle('element__like_active');
     }
   
     // удаляем элемент
-    _deleteCard() {
-      this._element.querySelector('.element__dump').addEventListener('click', function(evt){
-        evt.target.closest('.element').remove();
-      });
+    _deleteCard(evt) {
+      evt.target.closest('.element').remove();
     }
 
     // Открываем попап
     _handleImageClick() {
-      this._elementPicture.addEventListener('click', () => {
-        
-        this._handleCardClick(this._title, this._link);
-
-      });
+      this._handleCardClick(this._title, this._link);
     }
 
     //Навешиваем слушателей
     _setEventListeners() {
       
-      this._toggleLike();
+      this._element.querySelector('.element__like').addEventListener('click', (evt) => {this._toggleLike(evt)});
   
-      this._deleteCard();
+      this._element.querySelector('.element__dump').addEventListener('click', (evt) => {this._deleteCard(evt)});
       
-      this._handleImageClick();
+      this._elementPicture.addEventListener('click', () => {this._handleImageClick()});
     }
   }

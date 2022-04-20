@@ -9,7 +9,6 @@ export default class FormValidation {
     this._formElement = formElement;
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-    this._errorSpans = this._formElement.querySelectorAll(`.popup__input-error`);
   }
 
   // Показываем ошибку
@@ -90,16 +89,10 @@ export default class FormValidation {
   }
 
   resetForm() {
-    this._buttonElement.classList.remove(this._inactiveButtonClass);
-    this._buttonElement.removeAttribute('disabled');
+    this._toggleButtonState();
 
-    this._errorSpans.forEach( (errorSpan) => {
-      errorSpan.textContent = '';
-    });
-
-    this._inputList.forEach((errorInput) => {
-      errorInput.classList.remove(this._errorClass);
-      errorInput.classList.remove(this._inputErrorClass);
+    this._inputList.forEach( (inputElement) => {
+      this._hideInputError(inputElement); 
     });
   }
     

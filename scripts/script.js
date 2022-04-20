@@ -6,20 +6,16 @@ const editButton = document.querySelector('.profile__editButton');
 const formElementEdit = document.querySelector('.popup__container_edit');
 const nameInput = formElementEdit.querySelector('.popup__field_type_name');
 const jobInput = formElementEdit.querySelector('.popup__field_type_description');
-const submitButtonEdit = formElementEdit.querySelector('.popup__submitButton');
-const inputsPopupEdit = formElementEdit.querySelectorAll('.popup__input');
 const popupName = document.querySelector('.profile__name');
 const popupJob = document.querySelector('.profile__description');
 
 const popupAdd = document.querySelector('.popup_add');
 const addButton = document.querySelector('.profile__addButton');
-const submitButtonAdd = popupAdd.querySelector('.popup__submitButton');
 
 const userElements = document.querySelector('.elements');
 const formElementAdd = document.querySelector('.popup__container_add');
 const titleInput = formElementAdd.querySelector('.popup__field_type_title');
 const linkInput = formElementAdd.querySelector('.popup__field_type_link');
-const closeImage = document.querySelector('.popup__close_image');
 
 const popupImage = document.querySelector('.popup_image');
 const popupPicture = document.querySelector('.popup__picture');
@@ -64,11 +60,6 @@ function insertCard(link,title) {
 initialCards.forEach( (item) => {
   insertCard(item.link,item.name);
 });
-
-
-
-
-
 
 
 
@@ -150,7 +141,7 @@ function submitPopupAdd(evt) {
   linkInput.value='';
   titleInput.value='';
 
- validationPopupAdd.enableValidation();
+  validationPopupAdd.resetForm();
 }
 
 // Редактирование попапа изменение профиля
