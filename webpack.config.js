@@ -14,7 +14,9 @@ module.exports = {
   },
   mode: 'development',
   devServer: {
-    contentBase: path.resolve(__dirname, './dist'),
+    static: {
+      directory: path.resolve(__dirname, 'app'),
+    },
     open: true,
     compress: true,
     port: 8080
@@ -48,6 +50,5 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
-
   ]
 }
