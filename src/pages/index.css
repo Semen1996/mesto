@@ -39,4 +39,4 @@
 @import url(../blocks/root/root.css);
 @import url(../blocks/element/__number-of-likes/element__number-of-likes.css);
 @import url(../blocks/popup/__submitButton/_delete/popup__submitButton_delete.css);
-@import url(../blocks/profile/__avatar/_hover/profile__avatar_hover.css);
+@import url(../blocks/profile/__hover/profile__hover.css);
