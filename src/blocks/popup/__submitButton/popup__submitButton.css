@@ -3,7 +3,7 @@
   height: 50px;
   border: none;
   padding: 0;
-  margin: 49px 36px 0;
+  margin: 49px 36px 37px;
   background-color: #000;
   border-radius: 2px;
   font-weight: normal;
@@ -21,7 +21,7 @@
   .popup__submitButton {
     width: 238px;
     height: 46px;
-    margin: 46px 22px 0;
+    margin: 46px 22px 26px;
     font-size: 14px;
     line-height: 17px;
   }

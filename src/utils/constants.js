@@ -1,19 +1,23 @@
 const popupEditSelector = '.popup_edit';
 const popupNameSelector = '.profile__name';
+const profileAvatarSelector = '.profile__avatar';
 const popupJobSelector = '.profile__description';
 const popupAddSelector = '.popup_add';
 const userElements = '.elements';
 const popupImageSelector = '.popup_image';
 const templateSelector = '#element';
 
-// Находим кнопку для открытия попапа редактирования профиля
+
 const editButton = document.querySelector('.profile__editButton');
-// Находим кнопку для открытия попапа добавления карточки
 const addButton = document.querySelector('.profile__addButton');
 const formElementEdit = document.querySelector('.popup__container_edit');
 const nameInput = formElementEdit.querySelector('.popup__field_type_name');
 const jobInput = formElementEdit.querySelector('.popup__field_type_description');
 const formElementAdd = document.querySelector('.popup__container_add');
+
+const updateAvatarButton = document.querySelector('.profile__avatar');
+const popupUpdateAvatarSelector = '.popup_updateAvatar';
+const popupConfirmationSelector = '.popup_delete';
 
 
 // Массив классов и селекторов
@@ -28,5 +32,7 @@ const formObj = {
 
 
 
+
 export {popupEditSelector, popupNameSelector, popupJobSelector, popupAddSelector, userElements, popupImageSelector, templateSelector,
-        editButton, addButton, formElementEdit, nameInput, jobInput, formElementAdd, formObj};
+        editButton, addButton, formElementEdit, nameInput, jobInput, formElementAdd, formObj, profileAvatarSelector, updateAvatarButton, popupUpdateAvatarSelector,
+        popupConfirmationSelector};
