@@ -18,6 +18,7 @@ const formElementAdd = document.querySelector('.popup__container_add');
 const updateAvatarButton = document.querySelector('.profile__avatar');
 const popupUpdateAvatarSelector = '.popup_updateAvatar';
 const popupConfirmationSelector = '.popup_delete';
+const formElementAvatar = document.querySelector('.popup__container_updateAvatar');
 
 
 // Массив классов и селекторов
@@ -35,4 +36,4 @@ const formObj = {
 
 export {popupEditSelector, popupNameSelector, popupJobSelector, popupAddSelector, userElements, popupImageSelector, templateSelector,
         editButton, addButton, formElementEdit, nameInput, jobInput, formElementAdd, formObj, profileAvatarSelector, updateAvatarButton, popupUpdateAvatarSelector,
-        popupConfirmationSelector};
+        popupConfirmationSelector, formElementAvatar};

@@ -1,16 +1,16 @@
-import './pages/index.css';
+import './index.css';
 
 import {popupEditSelector, popupNameSelector, popupJobSelector, popupAddSelector, userElements, popupImageSelector, templateSelector,
     editButton, addButton, formElementEdit, nameInput, jobInput, formElementAdd, formObj, profileAvatarSelector, updateAvatarButton, popupUpdateAvatarSelector,
-    popupConfirmationSelector} from './utils/constants.js';
-import Card from './components/Card.js';
-import Section from './components/Section.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import UserInfo from './components/UserInfo.js';
-import FormValidation from './components/FormValidator.js';
-import Api from './components/Api.js';
-import PopupWithConfirmation from './components/PopupWithConfirmation.js';
+    popupConfirmationSelector, formElementAvatar} from '../utils/constants.js';
+import Card from '../components/Card.js';
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
+import FormValidation from '../components/FormValidator.js';
+import Api from '../components/Api.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 
 
 
@@ -72,6 +72,8 @@ const popupEdit = new PopupWithForm({popupSelector: popupEditSelector,
     api.editUserInfo(dataForm)
       .then(() => {
         userInfo.setUserInfo(dataForm);
+      })
+      .then(() => {
         popupEdit.close();
       })
       .catch((err) => {
@@ -112,7 +114,9 @@ const popupupdateAvatar = new PopupWithForm({popupSelector: popupUpdateAvatarSel
     api.updateAvatar(dataForm)
     .then(()=>{
       userInfo.setAvatar(dataForm.avatar);
-      popupupdateAvatar.close();
+    })
+    .then(()=>{
+        popupupdateAvatar.close();
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
@@ -151,15 +155,12 @@ const popupAdd = new PopupWithForm({popupSelector: popupAddSelector,
   handleFormSubmit: (dataForm) => {
 
     popupAdd.loading(true);
-    // Добавляем метод количества лайков 
-    dataForm.likes = [];
-    dataForm.owner = [];
-    dataForm.owner._id = userId;
-
 
     api.addCard(dataForm)
+      .then((data)=>{
+        section.addItem(createCard(data));
+      })
       .then(()=>{
-        section.addItem(createCard(dataForm));
         popupAdd.close();
         validationPopupAdd.resetForm();
       })
@@ -202,7 +203,7 @@ popupConfirmation.setEventListeners();
 
 
  // Создаем экземпляр класса, отвечающий за отрисовку элементов на странице
- const section = new Section({
+const section = new Section({
   renderer: (item)=> {
     const cardElement = createCard(item);
     section.addItem(cardElement);
@@ -275,10 +276,12 @@ function createCard(dataCard) {
 // Создаем экземпляры классов валидации форм
 const validationPopupAdd = new FormValidation(formObj, formElementAdd);
 const validationPopupEdit = new FormValidation(formObj, formElementEdit);
+const validationPopupAvatar = new FormValidation(formObj, formElementAvatar);
 
 // Подключаем валидацию форм
 validationPopupAdd.enableValidation();
 validationPopupEdit.enableValidation();
+validationPopupAvatar.enableValidation();
 
 ///////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////

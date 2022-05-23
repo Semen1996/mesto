@@ -3,7 +3,7 @@ import Popup from "./Popup.js";
 export default class PopupWithConfirmation extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    this._popupForm = this._popup.querySelector('.popup__container');
+    this._popupForm = this._popup.querySelector('.popup__submitButton');
   }
 
   // принимает функцию на удаление карточки
@@ -15,7 +15,7 @@ export default class PopupWithConfirmation extends Popup {
   setEventListeners() {
     super.setEventListeners();
 
-    this._popupForm.addEventListener('click', (event) => {
+    this._popupForm.addEventListener('click', () => {
       this._handleYes();
       this.close();
     });

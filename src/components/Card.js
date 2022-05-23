@@ -13,6 +13,11 @@ export default class Card {
       this._handleDumpClick = handleDumpClick;
       this._setLike = setLike;
       this._removeLike = removeLike;
+      this._element = this._getTemplate();
+      this._elementPicture = this._element.querySelector('.element__picture');
+      this._likeButton = this._element.querySelector('.element__like');
+      this._likeActiveSelector = 'element__like_active';
+      this._numOfLikesElement = this._element.querySelector('.element__number-of-likes');
     }
   
     _getTemplate() {
@@ -22,9 +27,8 @@ export default class Card {
     
     generateCard() {
       // Запишем разметку в приватное поле _element. 
-      this._element = this._getTemplate();
-      this._elementPicture = this._element.querySelector('.element__picture');
-      this._likeButton = this._element.querySelector('.element__like');
+      
+      
 
       //Подключим слушателей
       this._setEventListeners();
@@ -34,10 +38,10 @@ export default class Card {
       this._elementPicture.alt = this._title;
       this._element.querySelector('.element__title').textContent = this._title;
 
-      this._element.querySelector('.element__number-of-likes').textContent = this._numOfLikes;
-      //this.handleLikeCard(this._cardId);
+      this._numOfLikesElement.textContent = this._numOfLikes;
+
       if (this._likes.some(like => like._id ===  this._userId)){
-        this._likeButton.classList.toggle('element__like_active');
+        this._likeButton.classList.toggle(this._likeActiveSelector);
       }
 
       return this._element;
@@ -45,8 +49,8 @@ export default class Card {
 
     // Ставим лукасы  
     handleLikeCard(dataId) {
-      this._likeButton.classList.toggle('element__like_active');
-      this._element.querySelector('.element__number-of-likes').textContent = dataId.likes.length;
+      this._likeButton.classList.toggle(this._likeActiveSelector);
+      this._numOfLikesElement.textContent = dataId.likes.length;
     }
 
     // удаляем элемент
@@ -78,7 +82,7 @@ export default class Card {
     _setEventListeners() {
       
       this._likeButton.addEventListener('click', () => {
-        if (this._likeButton.classList.contains('element__like_active')) {
+        if (this._likeButton.classList.contains(this._likeActiveSelector)) {
           this._removeLike(this._cardId);
         } else {
           this._setLike(this._cardId);
