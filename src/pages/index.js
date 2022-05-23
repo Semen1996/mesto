@@ -135,6 +135,7 @@ popupupdateAvatar.setEventListeners();
 
 // Открытие попапа редактирования аватарки
 updateAvatarButton.addEventListener('click', function(){
+  validationPopupAvatar.resetForm();
   popupupdateAvatar.open();
 });
 
@@ -162,7 +163,7 @@ const popupAdd = new PopupWithForm({popupSelector: popupAddSelector,
       })
       .then(()=>{
         popupAdd.close();
-        validationPopupAdd.resetForm();
+        
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -181,6 +182,7 @@ popupAdd.setEventListeners();
 
 //  Открытие попапа добавления элемента
 addButton.addEventListener('click', function(){
+  validationPopupAdd.resetForm();
   popupAdd.open();
 });
 
@@ -231,6 +233,9 @@ function createCard(dataCard) {
         api.deleteCard(dataCard._id)
           .then(() => {
             card.deleteCard();
+          })
+          .then(() => {
+            popupConfirmation.close();
           })
           .catch((err) => {
             console.log(`Ошибка: ${err}`);

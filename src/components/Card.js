@@ -66,7 +66,7 @@ export default class Card {
     // устанавливаем картинку с мусоркой
     _installDump() {
       if( this._cardOwnerId === this._userId) {
-        let button = document.createElement('button');
+        const button = document.createElement('button');
         button.className = "element__dump";
         button.type = "button";
         button.ariaLabel = "Удалить";
