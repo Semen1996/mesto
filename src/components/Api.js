@@ -49,7 +49,7 @@ export default class Api {
         method: 'POST',
         headers: this._headers,
         body: JSON.stringify({
-          name: dataForm.name,
+          name: dataForm.name2,
           link: dataForm.link
         })
       })
