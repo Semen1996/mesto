@@ -38,5 +38,5 @@
 .root{background-color:#000;font-family:Inter,Arial,"sans-serif";margin:0 auto;max-width:1280px}
 .element__number-of-likes{font-size:13px;font-weight:400;line-height:16px;margin:0;padding-right:7px;text-align:center}
 .popup__submitButton_delete{margin-top:0}@media screen and (max-width:768px){.popup__submitButton_delete{margin-top:0}}
-.profile__avatar_hover{height:100%;width:100%}.profile__avatar_hover:hover{background-color:rgba(0,0,0,.8);background-image:url(93c771f5f8582261951d.png);background-position:50%;background-repeat:no-repeat}
+.profile__hover{height:100%;width:100%}.profile__hover:hover{background-color:rgba(0,0,0,.8);background-image:url(93c771f5f8582261951d.png);background-position:50%;background-repeat:no-repeat}
 
