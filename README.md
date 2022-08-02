@@ -1,4 +1,4 @@
-# Проект: Путешествие по России https://semen1996.github.io/russian-travel/
+# Проект: Место https://semen1996.github.io/mesto/
 
 [Лендинг](https://habr.com/ru/company/trinion/blog/273917/ "Одностраничный сайт"), посвященный некоторым живописным местам России, которые стоит посетить.
 
