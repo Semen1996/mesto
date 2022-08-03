@@ -1,9 +1,42 @@
-# Проект: Место https://semen1996.github.io/mesto/
+# Проект: Место 
+Сайт на GitHub Pages: https://semen1996.github.io/mesto/
 
-[Лендинг](https://habr.com/ru/company/trinion/blog/273917/ "Одностраничный сайт"), посвященный некоторым живописным местам России, которые стоит посетить.
+"Mesto" - это интерактивная страница, где пользователи могут делиться фотографиями.
 
-В работе используются следующие технологии:  
-* [Grid Layout](https://developer.mozilla.org/ru/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout);
-* [Figma](https://habr.com/ru/post/463181/);
-* [PerfectPixel](https://chrome.google.com/webstore/detail/perfectpixel-by-welldonec/dkaagdgjmgdmbnecmcefdhjekcoceebi?hl=ru);
-* Методы адаптивной верстки.
+## Функционал:
+
+* Добавление и удаление фотографий
+* Ставить и убирать лайк фотографиям
+* Редактирование профиля пользователя
+* Данные хранятся на сервере и загружаются с сервера
+* Валидация форм на стороне клиента
+
+## Технологии: 
+
+* Flexbox
+* Grid Layout
+* Методология БЭМ;
+* Позиционирование;
+* JavaScript (Asynchronous JS, OOP, DOM API, Fetch API);
+* Проверка формы на стороне клиента;
+* Webpack
+
+## Инструкция по установке: 
+
+Скопируйте проект к себе с помощью команды
+
+```
+git clone git@github.com:Semen1996/mesto.git
+```
+
+```
+npm i webpack --save-dev
+```
+
+```
+npm run build
+```
+
+```
+npm run dev
+```
